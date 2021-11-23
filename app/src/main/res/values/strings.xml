@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">Rick and Morty Characters</string>
+
+    //Titles
+    <string name="title_characters">Characters</string>
+    <string name="title_favourite">Favorites</string>
+
+    //Errors
+    <string name="timeout_code">timeout</string>
+    <string name="no_internet_message">No internet connection</string>
+    <string name="unauthorized_code">401</string>
+    <string name="unknown_message">Unknown error. Please try again later</string>
+
+</resources>

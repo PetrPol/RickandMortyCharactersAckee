@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Accent
+    <color name="accent_primary">#9595FE</color>
+
+    //Background
+    <color name="backgrounds_primary">#181819</color>
+    <color name="backgrounds_secondary">#2E2E2F</color>
+    <color name="backgrounds_tertiary">#474747</color>
+    <color name="backgrounds_bottom_nav">#0F0F10</color>
+
+    //Foregrounds
+    <color name="foregrounds_primary">#FFFFFF</color>
+    <color name="foregrounds_secondary">#8B8B8C</color>
+    <color name="foregrounds_tertiary">#5D5D5E</color>
+    <color name="foregrounds_separator">#474749</color>
+    <color name="foregrounds_on_primary">#000000</color>
+
+    //Icons
+    <color name="icons_primary">#FFFFFF</color>
+    <color name="icons_secondary">#B3B3B3</color>
+    <color name="icons_tertiary">#9595FE</color>
+</resources>
