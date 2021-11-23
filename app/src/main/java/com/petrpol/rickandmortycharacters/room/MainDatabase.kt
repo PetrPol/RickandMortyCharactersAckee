@@ -7,7 +7,7 @@ import com.petrpol.rickandmortycharacters.model.CharacterObject
 import com.petrpol.rickandmortycharacters.room.typeConverters.RoomTypeConverters
 
 /** Room main database  */
-@Database(entities = [CharacterObject::class], version = 2, exportSchema = false)
+@Database(entities = [CharacterObject::class], version = 3, exportSchema = false)
 @TypeConverters(RoomTypeConverters::class)
 abstract class MainDatabase: RoomDatabase(){
 

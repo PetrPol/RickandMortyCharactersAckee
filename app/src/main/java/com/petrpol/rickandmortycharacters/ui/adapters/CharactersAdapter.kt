@@ -23,6 +23,7 @@ class CharactersAdapter (private val adapterCallback: AdapterCallback): Recycler
     /** View holder for character preview */
     class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val characterName : TextView = itemView.findViewById(R.id.CharacterListItemName)
+        val characterFavourite : ImageView = itemView.findViewById(R.id.CharacterListItemFavourite)
         val characterStatus : TextView = itemView.findViewById(R.id.CharacterListItemStatus)
         val characterImage : ImageView = itemView.findViewById(R.id.CharacterListItemImage)
     }
@@ -40,6 +41,11 @@ class CharactersAdapter (private val adapterCallback: AdapterCallback): Recycler
 
         viewHolder.characterName.text = actualCharacter.name
         viewHolder.characterStatus.text = actualCharacter.status
+        if (actualCharacter.favourite)
+            viewHolder.characterFavourite.visibility = View.VISIBLE
+        else
+            viewHolder.characterFavourite.visibility = View.GONE
+
         Picasso.get().load(actualCharacter.image).into(viewHolder.characterImage)
 
         //On click listener

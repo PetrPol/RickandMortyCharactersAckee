@@ -1,11 +1,11 @@
 package com.petrpol.rickandmortycharacters.ui.detail
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.databinding.FragmentDetailBinding
@@ -16,6 +16,7 @@ class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels()
     private var characterId: Int = -1
+    private var favouriteMenuItem : MenuItem? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -23,21 +24,54 @@ class DetailFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         // Inflate data binding
+        setHasOptionsMenu(true)
         val binding: FragmentDetailBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_detail, container, false)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.detail_menu, menu)
+        favouriteMenuItem = menu.findItem(R.id.detail_menu_favourite)
+        setupObservers()
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.detail_menu_favourite){
+            viewModel.favouriteChange()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        characterId = requireActivity().intent.getIntExtra(getString(R.string.argument_id),-1)
+        characterId = requireActivity().intent.getIntExtra(getString(R.string.argument_id), -1)
         if (characterId == -1)
             requireActivity().finish()
         viewModel.getCharacter(characterId)
-
-        viewModel.character.observe(viewLifecycleOwner,{character -> requireActivity().title = character.name })
     }
+
+
+
+    private fun setupObservers() {
+        viewModel.character.observe(viewLifecycleOwner,{character -> requireActivity().title = character.name })
+        viewModel.favourite.observe(viewLifecycleOwner,{ favourite ->
+            if (favourite) {
+                favouriteMenuItem?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic__24_favorites_active)
+                requireActivity().setResult(resources.getInteger(R.integer.favourite_result_code))
+            }
+            else {
+                favouriteMenuItem?.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_24_favorites_inactive)
+                requireActivity().setResult(resources.getInteger(R.integer.favourite_no_result_code))
+            }
+        })
+    }
+
 
 }

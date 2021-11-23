@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Result Codes
+    <integer name="favourite_result_code">0</integer>
+    <integer name="favourite_no_result_code">1</integer>
+
+</resources>

@@ -24,7 +24,7 @@ class CharactersRepository constructor(
 
         try {
             if (reset) {
-                page = 0
+                page = 1
                 nameQueryVal = nameQuery
             }
 
@@ -35,6 +35,8 @@ class CharactersRepository constructor(
 
             page++
 
+            checkFavourites(charactersResponse)
+
             //Emit success
             send(DataState.Success(charactersResponse))
 
@@ -43,6 +45,16 @@ class CharactersRepository constructor(
             Log.w("Characters repository","Characters error: ${e.message}")
             send(DataState.Error(e))
         }
+    }
+
+    private suspend fun checkFavourites(charactersResponse: CharactersResponse) {
+        val favouriteIds = charactersDao.getFavouriteIds()
+
+        for (character in charactersResponse.characters){
+            if (favouriteIds.contains(character.id))
+                character.favourite = true
+        }
+
     }
 
     @ExperimentalCoroutinesApi
@@ -60,5 +72,37 @@ class CharactersRepository constructor(
             Log.w("Characters repository","Character single error: ${e.message}")
             send(DataState.Error(e))
         }
+    }
+
+    suspend fun removeCharacterFromFavourites(id: Int) {
+        try {
+            charactersDao.deleteCharacterByID(id)
+
+        }catch (e: Exception){
+            Log.w("Characters repository","Character delete error: ${e.message}")
+        }
+
+    }
+
+    suspend fun addCharacterToFavourites(character: CharacterObject) {
+        try {
+            charactersDao.insert(character)
+
+        }catch (e: Exception){
+            Log.w("Characters repository","Character insert error: ${e.message}")
+        }
+
+    }
+
+    suspend fun isCharacterFavourite(id: Int): Boolean {
+        try {
+            val favourite = charactersDao.getCharacterByID(id)
+            Log.i("Test","Favourite "+ favourite)
+            return favourite!=null
+
+        }catch (e: Exception){
+            Log.w("Characters repository","Character isFavourite error: ${e.message}")
+        }
+        return false
     }
 }

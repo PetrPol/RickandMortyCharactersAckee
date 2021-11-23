@@ -14,5 +14,6 @@ data class CharacterObject constructor(
     val gender: String,
     val origin: Location,
     val location: Location,
-    val image: String
+    val image: String,
+    var favourite: Boolean = false
 )

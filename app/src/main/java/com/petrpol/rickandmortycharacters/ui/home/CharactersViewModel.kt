@@ -82,4 +82,16 @@ class CharactersViewModel  @Inject constructor(
                 .launchIn(viewModelScope)
         }
     }
+
+    fun setFavourite(favourite: Boolean, id: Int) {
+        Log.i("TEST","setFavourite")
+        val tmpList = _charactersList.value!!
+        for (character in tmpList)
+            if (character.id == id) {
+                character.favourite = favourite
+                Log.i("TEST","setFavourite " + id + "  " + character.name)
+                break
+            }
+        _charactersList.postValue(tmpList)
+    }
 }
