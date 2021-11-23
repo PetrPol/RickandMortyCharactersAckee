@@ -43,7 +43,7 @@
     <style name="ParagraphLarge" parent="@style/Base.Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/foregrounds_primary</item>
+        <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">18sp</item>
         <item name="android:lineHeight" tools:targetApi="p">22dp</item>
     </style>
@@ -51,7 +51,7 @@
     <style name="ParagraphMedium" parent="@style/Base.Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/foregrounds_primary</item>
+        <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:lineHeight" tools:targetApi="p">20dp</item>
     </style>
@@ -59,7 +59,7 @@
     <style name="ParagraphSmall" parent="@style/Base.Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/foregrounds_primary</item>
+        <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineHeight" tools:targetApi="p">18dp</item>
     </style>

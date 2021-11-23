@@ -1,5 +1,6 @@
 package com.petrpol.rickandmortycharacters.retrofit
 
+import com.petrpol.rickandmortycharacters.model.CharacterObject
 import com.petrpol.rickandmortycharacters.retrofit.objects.CharactersResponse
 import retrofit2.http.*
 
@@ -17,4 +18,9 @@ interface CharactersRetrofit {
         @Query("page") page: Int,
         @Query("name") name: String
     ): CharactersResponse
+
+    @GET("character/{id}")
+    suspend fun getSingleCharacter(
+        @Path("id") id: Int
+    ): CharacterObject
 }

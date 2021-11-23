@@ -1,5 +1,6 @@
 package com.petrpol.rickandmortycharacters.ui.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,19 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.model.CharacterObject
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.character_list_item.view.*
-import kotlinx.coroutines.*
-import java.util.*
+import kotlin.collections.ArrayList
 
 /**
- * Recycler adapter for list of album on dashboard
+ * Recycler adapter for list of characters on dashboard
  */
 class CharactersAdapter (private val adapterCallback: AdapterCallback): RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
 
-    private var characters: List<CharacterObject> = ArrayList<CharacterObject>()
+    private var characters: ArrayList<CharacterObject> = ArrayList()
     private var loading = true
 
-    /** View holder for album preview */
+    /** View holder for character preview */
     class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val characterName : TextView = itemView.findViewById(R.id.CharacterListItemName)
         val characterStatus : TextView = itemView.findViewById(R.id.CharacterListItemStatus)
@@ -53,12 +52,14 @@ class CharactersAdapter (private val adapterCallback: AdapterCallback): Recycler
         }
     }
 
+
     override fun getItemCount(): Int {
         return characters.size
     }
 
     /** Sets new data set and notify about change */
-    fun setNewDataSet(newCharacterObjects: List<CharacterObject>){
+    @SuppressLint("NotifyDataSetChanged")
+    fun setNewDataSet(newCharacterObjects: ArrayList<CharacterObject>){
         characters = newCharacterObjects
         notifyDataSetChanged()
         loading = false

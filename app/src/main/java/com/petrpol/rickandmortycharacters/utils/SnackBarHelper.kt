@@ -30,6 +30,9 @@ class SnackBarHelper {
             if (exception.message.toString().contains(context.getString(R.string.timeout_code)))
                 return context.getString(R.string.no_internet_message)
 
+            if (exception.message.toString().contains(context.getString(R.string.no_found_code)))
+                return context.getString(R.string.no_found_message)
+
             return exception.message.toString()
 
         }
