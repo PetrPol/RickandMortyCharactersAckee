@@ -7,11 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.favourite.FavouriteFragment">
 
+    <LinearLayout
+        android:id="@+id/FragmentFavoritesEmptyContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/FragmentFavoritesEmptyTextTitle"
+            style="@style/Headline2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/favourites_empty_title" />
+
+        <TextView
+            android:id="@+id/FragmentFavoritesEmptyText"
+            style="@style/ParagraphMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/favourites_empty_description" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FragmentFavoritesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/FragmentFavoritesErrorLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

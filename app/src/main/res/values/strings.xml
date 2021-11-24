@@ -15,6 +15,10 @@
     <string name="no_found_code">404</string>
     <string name="no_found_message">No characters found</string>
 
+    //Favourites
+    <string name="favourites_empty_title">You have no favorites yet</string>
+    <string name="favourites_empty_description">You can add favorite character from detail screen. Easily by clicking on star on the top bar.</string>
+
     //Detail Activity
     <string name="title_name">Name</string>
     <string name="title_search">Search</string>

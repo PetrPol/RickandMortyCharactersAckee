@@ -43,6 +43,11 @@ class FavouriteFragment : Fragment(), AdapterCallback {
     private fun setupObservers() {
         //Update dataset of adapter
         viewModel.charactersList.observe(viewLifecycleOwner,{ characters ->
+            if (characters.isEmpty())
+                FragmentFavoritesEmptyContent.visibility = View.VISIBLE
+            else
+                FragmentFavoritesEmptyContent.visibility = View.GONE
+
             charactersAdapter.setNewDataSet(characters)
         })
 

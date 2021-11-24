@@ -27,7 +27,12 @@ object BindingAdapters {
     @BindingAdapter("app:url")
     @JvmStatic fun bindImageUrl(view: ImageView, url: String?){
         if (url==null)
-            view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_baseline_account_circle_24))
+            view.setImageDrawable(
+                ContextCompat.getDrawable(
+                    view.context,
+                    R.drawable.character_image_placeholder
+                )
+            )
         else
             Picasso.get().load(url).into(view)
     }
