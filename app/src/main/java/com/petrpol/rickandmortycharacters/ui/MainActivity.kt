@@ -2,13 +2,15 @@ package com.petrpol.rickandmortycharacters.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.ui.adapters.ScreenSlidePagerAdapter
 import com.petrpol.rickandmortycharacters.utils.ViewPagerHelper.Companion.onPageChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+/** Main activity for character lists */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -33,8 +35,7 @@ class MainActivity : AppCompatActivity() {
             if (position==0){
                 title = getString(R.string.title_characters)
                 MainActivityBottomNav.selectedItemId = R.id.navigation_characters
-                }
-            else {
+            } else {
                 title = getString(R.string.title_favourite)
                 MainActivityBottomNav.selectedItemId = R.id.navigation_favourite
             }

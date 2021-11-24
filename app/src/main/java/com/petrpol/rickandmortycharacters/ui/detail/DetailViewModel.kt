@@ -1,6 +1,5 @@
 package com.petrpol.rickandmortycharacters.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +13,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/** ViewModel for DetailFragment */
 @HiltViewModel
 class DetailViewModel  @Inject constructor(
     private val repository: CharactersRepository
@@ -38,6 +38,7 @@ class DetailViewModel  @Inject constructor(
     val dataState: LiveData<DataState<Boolean>>
         get() = _dataState
 
+    /** Gets info about selected Character by id from DB */
     fun getCharacter(id:Int){
         viewModelScope.launch {
             repository.getSingleCharacter(id)
@@ -47,6 +48,7 @@ class DetailViewModel  @Inject constructor(
         isFavourite(id)
     }
 
+    /** Stores or remove character from favourite DB and invert favourite value */
     fun favouriteChange() {
         //Character not loaded check
         if (_dataState.value is DataState.Success)
@@ -58,8 +60,7 @@ class DetailViewModel  @Inject constructor(
                 repository.removeCharacterFromFavourites(_character.value!!.id)
                 _favourite.postValue(false)
             }
-        }
-        else{
+        } else{
             viewModelScope.launch {
                 repository.addCharacterToFavourites(_character.value!!)
                 _favourite.postValue(true)
@@ -67,12 +68,14 @@ class DetailViewModel  @Inject constructor(
         }
     }
 
+    /** Post true if character is favourite */
     private fun isFavourite(id: Int) {
         viewModelScope.launch {
             _favourite.postValue(repository.isCharacterFavourite(id))
         }
     }
 
+    /** Support function to present data from repository to live data */
     private fun presentData(dataState: DataState<CharacterObject>) {
         when (dataState) {
             is DataState.Loading -> _dataState.postValue(dataState)

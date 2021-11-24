@@ -28,6 +28,8 @@
     </style>
 
 
+    //Text styles
+
     <style name="Headline1" parent="@style/Base.Widget.MaterialComponents.TextView">
         <item name="android:fontFamily">@font/gray_cliff_cf_bold</item>
         <item name="android:textColor">@color/foregrounds_primary</item>

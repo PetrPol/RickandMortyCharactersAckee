@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/** ViewModel for Favourite Fragment */
 @HiltViewModel
 class FavouriteViewModel  @Inject constructor(
     private val repository: CharactersRepository
@@ -32,7 +33,7 @@ class FavouriteViewModel  @Inject constructor(
     val dataState: LiveData<DataState<Boolean>>
         get() = _dataState
 
-
+    /** Gets list of favourite characters from DB */
     fun getFavouriteCharacters() {
         viewModelScope.launch {
             repository.getAllFavouriteCharacters()
@@ -41,6 +42,7 @@ class FavouriteViewModel  @Inject constructor(
         }
     }
 
+    /** Support function to present data from repository to live data */
     private fun presentData(dataState: DataState<List<CharacterObject>>) {
         when (dataState){
             is DataState.Loading -> _dataState.postValue(dataState)

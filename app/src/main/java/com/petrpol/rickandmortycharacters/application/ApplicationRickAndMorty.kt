@@ -5,5 +5,4 @@ import dagger.hilt.android.HiltAndroidApp
 
 /** Hilt application definition */
 @HiltAndroidApp
-class ApplicationRickAndMorty: Application() {
-}
+class ApplicationRickAndMorty : Application()

@@ -3,22 +3,26 @@ package com.petrpol.rickandmortycharacters.room.typeConverters
 import androidx.room.TypeConverter
 import com.petrpol.rickandmortycharacters.model.Location
 
+/** Type converters for room DB */
 class RoomTypeConverters {
-        @TypeConverter
-        fun fromTimestamp(value: String?): Location? {
-            if (value == null)
-                return null
 
-            val valueSplit = value.split(';')
+    /** Converts location object to serializable string */
+    @TypeConverter
+    fun fromTimestamp(value: String?): Location? {
+        if (value == null)
+            return null
 
-            return Location(valueSplit[0],valueSplit[1])
-        }
+        val valueSplit = value.split(';')
 
-        @TypeConverter
-        fun dateToTimestamp(location: Location?): String? {
-            if (location == null)
-                return null
+        return Location(valueSplit[0], valueSplit[1])
+    }
 
-            return location.name + ";" + location.url
-        }
+    /** Converts serializable string to location object */
+    @TypeConverter
+    fun dateToTimestamp(location: Location?): String? {
+        if (location == null)
+            return null
+
+        return location.name + ";" + location.url
+    }
 }

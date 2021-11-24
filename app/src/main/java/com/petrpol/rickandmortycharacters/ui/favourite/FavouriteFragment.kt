@@ -5,13 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.ui.adapters.AdapterCallback
@@ -20,9 +15,9 @@ import com.petrpol.rickandmortycharacters.ui.detail.DetailActivity
 import com.petrpol.rickandmortycharacters.utils.DataState
 import com.petrpol.rickandmortycharacters.utils.SnackBarHelper
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_characters.*
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
+/** Fragment to show list of favourite characters */
 @AndroidEntryPoint
 class FavouriteFragment : Fragment(), AdapterCallback {
 
@@ -31,9 +26,9 @@ class FavouriteFragment : Fragment(), AdapterCallback {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
@@ -44,28 +39,32 @@ class FavouriteFragment : Fragment(), AdapterCallback {
         setupRecyclerView()
     }
 
+
     private fun setupObservers() {
-        viewModel.charactersList.observe(viewLifecycleOwner,{
-            characters ->
+        //Update dataset of adapter
+        viewModel.charactersList.observe(viewLifecycleOwner,{ characters ->
             charactersAdapter.setNewDataSet(characters)
         })
 
-        viewModel.dataState.observe(viewLifecycleOwner,{
-            dataState ->
+        //Show error
+        viewModel.dataState.observe(viewLifecycleOwner,{ dataState ->
             if  (dataState is DataState.Error) SnackBarHelper.showErrorSnack(dataState.exception,FragmentFavoritesErrorLayout)
         })
     }
 
+    /** Reloads data */
     override fun onResume() {
         super.onResume()
         viewModel.getFavouriteCharacters()
     }
 
+    /** Setups Layout manager and adapter for recycler view */
     private fun setupRecyclerView() {
         FragmentFavoritesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         FragmentFavoritesRecyclerView.adapter = charactersAdapter
     }
 
+    /** Handles list item selected. Shows detail activity with character id */
     override fun itemSelected(id: Int) {
         val intent = Intent(requireContext(), DetailActivity::class.java).apply {
             putExtra(getString(R.string.argument_id), id)
@@ -73,5 +72,6 @@ class FavouriteFragment : Fragment(), AdapterCallback {
         startActivity(intent)
     }
 
+    /** Not implemented function */
     override fun loadNextPage() {}
 }

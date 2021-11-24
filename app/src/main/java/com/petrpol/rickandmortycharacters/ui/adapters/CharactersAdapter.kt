@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.model.CharacterObject
 import com.squareup.picasso.Picasso
-import kotlin.collections.ArrayList
 
 /**
  * Recycler adapter for list of characters on dashboard
@@ -58,7 +57,7 @@ class CharactersAdapter (private val adapterCallback: AdapterCallback): Recycler
         }
     }
 
-
+    /** Returns actual number of items */
     override fun getItemCount(): Int {
         return characters.size
     }

@@ -3,6 +3,8 @@ package com.petrpol.rickandmortycharacters.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/** Object represents one Rick and Morty character
+ *  Used also as Database Entity */
 @Entity(tableName = "table_characters")
 data class CharacterObject constructor(
     @PrimaryKey

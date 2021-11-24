@@ -1,12 +1,13 @@
 package com.petrpol.rickandmortycharacters.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.petrpol.rickandmortycharacters.R
 import dagger.hilt.android.AndroidEntryPoint
 
+/** Activity to show detail about character
+ *  Contains FragmentViewContainer to show fragment */
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    /** Finish activity when back button selected */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
             this.finish()
