@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.petrpol.rickandmortycharacters.model.CharacterObject
 import com.petrpol.rickandmortycharacters.repositories.CharactersRepository
 import com.petrpol.rickandmortycharacters.retrofit.objects.CharactersResponse
-import com.petrpol.rickandmortycharacters.ui.MainActivity
 import com.petrpol.rickandmortycharacters.utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -40,6 +39,7 @@ class CharactersViewModel  @Inject constructor(
         get() = _dataStateNext
 
     fun loadNextPage() {
+        Log.i("TEST","LOAD NEXT PAGE")
         //Test to last page
         if (_dataStateNext.value is DataState.Success)
             if (!(_dataStateNext.value as DataState.Success<Boolean>).data)

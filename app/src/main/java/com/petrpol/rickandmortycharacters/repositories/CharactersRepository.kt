@@ -105,4 +105,25 @@ class CharactersRepository constructor(
         }
         return false
     }
+
+    @ExperimentalCoroutinesApi
+    fun getAllFavouriteCharacters(): Flow<DataState<List<CharacterObject>>> = channelFlow {
+        send(DataState.Loading)
+
+        try {
+            val favourites = charactersDao.getCharacters()
+
+            for (char in favourites)
+                char.favourite = true
+
+            //Emit success
+            send(DataState.Success(favourites))
+
+
+        }catch (e: Exception){
+            Log.w("Characters repository","Character get all favourites error: ${e.message}")
+            send(DataState.Error(e))
+        }
+
+    }
 }

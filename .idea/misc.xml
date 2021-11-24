@@ -9,7 +9,9 @@
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/activity_main.xml" value="0.203125" />
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/character_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/ending_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/fragment_characters.xml" value="0.33061594202898553" />
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/fragment_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/layout/fragment_favorites.xml" value="0.203125" />
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/menu/detail_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidApps/RickandMortyCharacters/app/src/main/res/menu/main_activity_menu.xml" value="0.36666666666666664" />
       </map>

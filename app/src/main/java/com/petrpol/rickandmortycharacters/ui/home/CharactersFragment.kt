@@ -4,9 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.activity.result.ActivityResult
@@ -35,16 +33,14 @@ class CharactersFragment : Fragment(), AdapterCallback {
     private val charactersAdapter = CharactersAdapter(this)
     private var lastCalledId = -1
 
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result -> onResult(result)
-
-    }
-
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result -> onResult(result)}
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_characters, container, false)
     }
 
@@ -53,12 +49,13 @@ class CharactersFragment : Fragment(), AdapterCallback {
         setupRecyclerView()
         setupObservers()
         setupLayouts()
-        setupSearchView()
     }
 
-    private fun setupSearchView() {
-        if (requireActivity() is MainActivity)
-            (requireActivity() as MainActivity).searchedText.observe(viewLifecycleOwner,{ text -> viewModel.searchByName(text) })
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_activity_menu, menu)
+        val searchView = menu.findItem(R.id.MainActivityMenuSearch)?.actionView as SearchView
+        searchView.onTextSubmit {text -> viewModel.searchByName(text) }
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun setupLayouts() {

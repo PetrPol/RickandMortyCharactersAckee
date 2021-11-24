@@ -17,25 +17,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    var searchedText: MutableLiveData<String> = MutableLiveData()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        //Setup nav controller
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_characters, R.id.navigation_favourite
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_activity_menu, menu)
-        val searchView = menu?.findItem(R.id.MainActivityMenuSearch)?.actionView as SearchView
-        searchView.onTextSubmit {text -> searchedText.postValue(text) }
-        return super.onCreateOptionsMenu(menu)
     }
 }
