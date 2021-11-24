@@ -8,6 +8,7 @@
 
     //Errors
     <string name="timeout_code">timeout</string>
+    <string name="resolve_code">Unable to resolve host</string>
     <string name="no_internet_message">No internet connection</string>
     <string name="unauthorized_code">401</string>
     <string name="unknown_message">Unknown error. Please try again later</string>

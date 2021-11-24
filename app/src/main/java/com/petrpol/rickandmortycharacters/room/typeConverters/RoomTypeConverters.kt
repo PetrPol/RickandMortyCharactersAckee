@@ -8,7 +8,7 @@ class RoomTypeConverters {
 
     /** Converts location object to serializable string */
     @TypeConverter
-    fun fromTimestamp(value: String?): Location? {
+    fun stringToLocation(value: String?): Location? {
         if (value == null)
             return null
 
@@ -19,7 +19,7 @@ class RoomTypeConverters {
 
     /** Converts serializable string to location object */
     @TypeConverter
-    fun dateToTimestamp(location: Location?): String? {
+    fun locationToString(location: Location?): String? {
         if (location == null)
             return null
 

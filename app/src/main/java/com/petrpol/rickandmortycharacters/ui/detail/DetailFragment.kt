@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 /** Fragment used to show detail info about character
  *  Uses data binding for character info */
@@ -37,12 +38,18 @@ class DetailFragment : Fragment() {
         inflater.inflate(R.menu.detail_menu, menu)
         favouriteMenuItem = menu.findItem(R.id.detail_menu_favourite)
         setupObservers()
+        setupLayouts()
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    /** Setups Swipe refresh view */
+    private fun setupLayouts() {
+        FragmentDetailSwipeView.setOnRefreshListener { viewModel.getCharacter(characterId) }
     }
 
     /** Handles favourite button press */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.detail_menu_favourite){
+        if (item.itemId == R.id.detail_menu_favourite) {
             viewModel.favouriteChange()
         }
 

@@ -2,235 +2,240 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.favourite.FavouriteFragment" >
+    tools:context=".ui.favourite.FavouriteFragment">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.petrpol.rickandmortycharacters.ui.detail.DetailViewModel" />
     </data>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:isRefreshing="@{viewmodel.dataState}">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/FragmentDetailContent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/FragmentDetailSwipeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ScrollView
-        android:id="@+id/FragmentDetailScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/FragmentDetailErrorLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        app:isRefreshing="@{viewmodel.dataState}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/FragmentDetailScrollViewContent"
+            android:id="@+id/FragmentDetailContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/character_item_background"
-            android:elevation="8dp">
+            android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/FragmentDetailCardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/FragmentDetailScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/FragmentDetailErrorLayout"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/FragmentDetailImage"
-                    app:url="@{viewmodel.character.image}"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    tools:src="@tools:sample/avatars" />
-            </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/FragmentDetailScrollViewContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/character_item_background"
+                    android:elevation="8dp">
 
-            <TextView
-                android:id="@+id/FragmentDetailNameTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/FragmentDetailCardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/FragmentDetailImage"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            app:url="@{viewmodel.character.image}"
+                            tools:src="@tools:sample/avatars" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/FragmentDetailNameTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/title_name"
+                        app:layout_constraintStart_toEndOf="@+id/FragmentDetailCardView"
+                        app:layout_constraintTop_toTopOf="@+id/FragmentDetailCardView" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailName"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewmodel.character.name}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailNameTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailNameTitle" />
+
+                    <View
+                        android:id="@+id/FragmentDetailSEparator"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/foregrounds_separator"
+                        android:elevation="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailCardView" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailStatusTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_status"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSEparator" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailStatus"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@{viewmodel.character.status}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailStatusTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailStatusTitle" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailSpeaciesTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_species"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailStatus" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailSpecies"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@{viewmodel.character.species}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailSpeaciesTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSpeaciesTitle" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailTypeTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_type"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailSpecies"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSpecies" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailType"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@{viewmodel.character.type}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailTypeTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailTypeTitle" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailGenderTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_gender"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailType"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailType" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailGender"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@{viewmodel.character.gender}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailGenderTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailGenderTitle" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailOriginTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_origin"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailGender"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailGender" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailOrigin"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@{viewmodel.character.origin.name}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailOriginTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailOriginTitle" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailLocationTitle"
+                        style="@style/ParagraphMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title_location"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailOrigin"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailOrigin" />
+
+                    <TextView
+                        android:id="@+id/FragmentDetailLocation"
+                        style="@style/Headline2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{viewmodel.character.location.name}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/FragmentDetailLocationTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/FragmentDetailLocationTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <RelativeLayout
+                android:id="@+id/FragmentDetailErrorLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/title_name"
-                app:layout_constraintStart_toEndOf="@+id/FragmentDetailCardView"
-                app:layout_constraintTop_toTopOf="@+id/FragmentDetailCardView" />
-
-            <TextView
-                android:id="@+id/FragmentDetailName"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{viewmodel.character.name}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailNameTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailNameTitle" />
-
-            <View
-                android:id="@+id/FragmentDetailSEparator"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/foregrounds_separator"
-                android:elevation="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailCardView" />
-
-            <TextView
-                android:id="@+id/FragmentDetailStatusTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_status"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSEparator" />
-
-            <TextView
-                android:id="@+id/FragmentDetailStatus"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="@{viewmodel.character.status}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailStatusTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailStatusTitle" />
-
-            <TextView
-                android:id="@+id/FragmentDetailSpeaciesTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_species"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailStatus" />
-
-            <TextView
-                android:id="@+id/FragmentDetailSpecies"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="@{viewmodel.character.species}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailSpeaciesTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSpeaciesTitle" />
-
-            <TextView
-                android:id="@+id/FragmentDetailTypeTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_type"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailSpecies"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailSpecies" />
-
-            <TextView
-                android:id="@+id/FragmentDetailType"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="@{viewmodel.character.type}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailTypeTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailTypeTitle" />
-
-            <TextView
-                android:id="@+id/FragmentDetailGenderTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_gender"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailType"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailType" />
-
-            <TextView
-                android:id="@+id/FragmentDetailGender"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="@{viewmodel.character.gender}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailGenderTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailGenderTitle" />
-
-            <TextView
-                android:id="@+id/FragmentDetailOriginTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_origin"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailGender"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailGender" />
-
-            <TextView
-                android:id="@+id/FragmentDetailOrigin"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="@{viewmodel.character.origin.name}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailOriginTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailOriginTitle" />
-
-            <TextView
-                android:id="@+id/FragmentDetailLocationTitle"
-                style="@style/ParagraphMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/title_location"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailOrigin"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailOrigin" />
-
-            <TextView
-                android:id="@+id/FragmentDetailLocation"
-                style="@style/Headline2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@{viewmodel.character.location.name}"
+                app:error="@{viewmodel.dataState}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/FragmentDetailLocationTitle"
-                app:layout_constraintTop_toBottomOf="@+id/FragmentDetailLocationTitle" />
+                app:layout_constraintStart_toStartOf="parent">
+
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/FragmentDetailErrorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:error="@{viewmodel.dataState}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </RelativeLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

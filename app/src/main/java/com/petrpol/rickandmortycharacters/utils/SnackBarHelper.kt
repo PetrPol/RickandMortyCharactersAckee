@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.petrpol.rickandmortycharacters.R
-import java.lang.Exception
 
 /** SnackBar support class
  *  Extends snackBar show functions */
@@ -24,10 +23,13 @@ class SnackBarHelper {
 
         /** Decodes exception to presentable String message to user */
         private fun decodeException(exception: Exception, context: Context): String{
-            if (exception.message==null)
+            if (exception.message == null)
                 return context.getString(R.string.unknown_message)
 
-            if (exception.message.toString().contains(context.getString(R.string.timeout_code)))
+            if (exception.message.toString()
+                    .contains(context.getString(R.string.timeout_code)) || exception.message.toString()
+                    .contains(context.getString(R.string.resolve_code))
+            )
                 return context.getString(R.string.no_internet_message)
 
             if (exception.message.toString().contains(context.getString(R.string.no_found_code)))
