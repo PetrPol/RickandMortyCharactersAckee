@@ -16,6 +16,7 @@
 
     //Detail Activity
     <string name="title_name">Name</string>
+    <string name="title_search">Search</string>
     <string name="title_status">Status</string>
     <string name="title_species">Species</string>
     <string name="title_type">Type</string>

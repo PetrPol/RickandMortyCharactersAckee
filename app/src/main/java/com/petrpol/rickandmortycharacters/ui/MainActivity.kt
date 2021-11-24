@@ -1,19 +1,10 @@
 package com.petrpol.rickandmortycharacters.ui
 
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.AdapterView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.navigation.NavigationBarView
+import androidx.appcompat.app.AppCompatDelegate.*
 import com.petrpol.rickandmortycharacters.R
 import com.petrpol.rickandmortycharacters.ui.adapters.ScreenSlidePagerAdapter
-import com.petrpol.rickandmortycharacters.ui.favourite.FavouriteFragment
-import com.petrpol.rickandmortycharacters.ui.home.CharactersFragment
 import com.petrpol.rickandmortycharacters.utils.ViewPagerHelper.Companion.onPageChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
 
         //Setup nav controller
         MainActivityBottomNav.setOnItemSelectedListener { item ->

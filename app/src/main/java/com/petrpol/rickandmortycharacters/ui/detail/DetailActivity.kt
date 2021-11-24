@@ -14,7 +14,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic__24_arrow_left);
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

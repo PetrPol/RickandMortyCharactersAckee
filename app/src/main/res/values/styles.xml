@@ -2,8 +2,8 @@
 
     <style name="Theme.RickAndMorty" parent="Theme.MaterialComponents.DayNight">
 
+        //Colors
         <item name="colorPrimary">@color/backgrounds_primary</item>
-        <item name="colorSecondary">@color/backgrounds_primary</item>
 
         <item name="colorAccent">@color/accent_primary</item>
         <item name="android:colorBackground">@color/backgrounds_primary</item>
@@ -12,53 +12,59 @@
         <item name="android:textColorPrimary">@color/foregrounds_primary</item>
         <item name="android:textColorSecondary">@color/foregrounds_secondary</item>
 
-        <item name="android:statusBarColor">@color/backgrounds_secondary</item>
-        <item name="android:windowLightStatusBar">true</item>
+        //Status and action bar
+        <item name="android:statusBarColor">@color/backgrounds_primary</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic__24_arrow_left</item>
+        <item name="android:windowLightStatusBar">@bool/status_bar_light</item>
+        <item name="android:searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+
+        //Others
+        <item name="android:fontFamily">@font/gray_cliff_cf_bold</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView.ActionBar">
+        <item name="android:searchIcon">@drawable/ic__24_search</item>
+    </style>
+
+
     <style name="Headline1" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_bold</item>
         <item name="android:textColor">@color/foregrounds_primary</item>
         <item name="android:textSize">28sp</item>
         <item name="android:lineHeight" tools:targetApi="p">34dp</item>
     </style>
 
     <style name="Headline2" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_bold</item>
         <item name="android:textColor">@color/foregrounds_primary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:lineHeight" tools:targetApi="p">24dp</item>
     </style>
 
     <style name="Headline3" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_bold</item>
         <item name="android:textColor">@color/foregrounds_primary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:lineHeight" tools:targetApi="p">20dp</item>
     </style>
 
     <style name="ParagraphLarge" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_regular</item>
         <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">18sp</item>
         <item name="android:lineHeight" tools:targetApi="p">22dp</item>
     </style>
 
     <style name="ParagraphMedium" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_regular</item>
         <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:lineHeight" tools:targetApi="p">20dp</item>
     </style>
 
     <style name="ParagraphSmall" parent="@style/Base.Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/gray_cliff_cf_regular</item>
         <item name="android:textColor">@color/foregrounds_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineHeight" tools:targetApi="p">18dp</item>
