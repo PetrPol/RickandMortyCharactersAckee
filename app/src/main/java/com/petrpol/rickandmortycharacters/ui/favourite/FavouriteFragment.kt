@@ -28,7 +28,6 @@ class FavouriteFragment : Fragment(), AdapterCallback {
 
     private val viewModel: FavouriteViewModel by viewModels()
     private val charactersAdapter = CharactersAdapter(this)
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ viewModel.getFavouriteCharacters() }
 
 
     override fun onCreateView(
@@ -57,6 +56,11 @@ class FavouriteFragment : Fragment(), AdapterCallback {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavouriteCharacters()
+    }
+
     private fun setupRecyclerView() {
         FragmentFavoritesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         FragmentFavoritesRecyclerView.adapter = charactersAdapter
@@ -66,7 +70,7 @@ class FavouriteFragment : Fragment(), AdapterCallback {
         val intent = Intent(requireContext(), DetailActivity::class.java).apply {
             putExtra(getString(R.string.argument_id), id)
         }
-        resultLauncher.launch(intent)
+        startActivity(intent)
     }
 
     override fun loadNextPage() {}
